@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teste de Personalidade Financeira | Dani Meger</title>
+  <meta name="description"
+    content="Descubra sua Personalidade Financeira. 12 perguntas baseadas em Big Five + Eneagrama para revelar como você se relaciona com o dinheiro." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="quiz.css" />
+</head>
+
+<body class="quiz-body">
+
+  <!-- Partículas de fundo -->
+  <div class="hero-particles" id="quiz-particles"></div>
+
+  <!-- ===== HEADER MINIMALISTA ===== -->
+  <header class="quiz-header">
+    <a href="index.html" class="quiz-logo" aria-label="Voltar para a landing page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+      <span>Dani Meger</span>
+    </a>
+    <span class="quiz-header-label">Diagnóstico de Personalidade Financeira</span>
+  </header>
+
+  <!-- ================================================================
+       TELA 0: FORMULÁRIO DE CAPTURA
+       ================================================================ -->
+  <div class="quiz-screen active" id="screen-form">
+    <div class="quiz-container">
+
+      <div class="quiz-hero-text">
+        <span class="eyebrow">Passo 1 de 3</span>
+        <h1>Descubra sua <span class="gold-text">Personalidade Financeira</span></h1>
+        <p class="hero-subtitle">Preencha seus dados para começar o teste gratuito. É rápido, sigiloso e 100% personalizado.</p>
+      </div>
+
+      <div class="quiz-card" style="max-width: 640px; margin: 0 auto;">
+        <form id="quiz-form" class="quiz-form" novalidate>
+
+          <div class="form-group">
+            <label for="qf-name">Nome Completo *</label>
+            <input type="text" id="qf-name" name="name" class="form-input"
+              placeholder="Dr(a). Seu Nome Completo" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="qf-email">E-mail *</label>
+              <input type="email" id="qf-email" name="email" class="form-input"
+                placeholder="seu@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="qf-phone">WhatsApp *</label>
+              <input type="tel" id="qf-phone" name="phone" class="form-input"
+                placeholder="(00) 99999-9999" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="qf-profession">Profissão *</label>
+              <input type="text" id="qf-profession" name="profession" class="form-input"
+                placeholder="Ex: Médico(a), Dentista…" required />
+            </div>
+            <div class="form-group">
+              <label for="qf-income">Renda Mensal *</label>
+              <input type="text" id="qf-income" name="monthlyIncome" class="form-input"
+                placeholder="Ex: R$ 15.000 – R$ 25.000" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="qf-challenge">Qual o seu maior desafio financeiro hoje? *</label>
+            <textarea id="qf-challenge" name="financialChallenge" class="form-input quiz-textarea"
+              placeholder="Descreva brevemente seu principal desafio com o dinheiro…" required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">
+            Continuar para o Teste
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          <p class="form-privacy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="12" height="12">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            Seus dados estão protegidos e serão usados apenas para enviar seus resultados.
+          </p>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================================================================
+       TELA 1: INTRODUÇÃO PERSONALIZADA
+       ================================================================ -->
+  <div class="quiz-screen" id="screen-intro">
+    <div class="quiz-container">
+
+      <div class="quiz-hero-text">
+        <span class="eyebrow">Quase lá!</span>
+        <h1>Olá, <span class="gold-text" id="intro-name">amigo(a)</span>!</h1>
+        <p class="hero-subtitle">Prepare-se para descobrir como sua personalidade influencia suas decisões financeiras.</p>
+      </div>
+
+      <div class="quiz-card quiz-intro-card" style="max-width: 720px; margin: 0 auto;">
+
+        <h2 class="quiz-card-title">Como funciona o teste?</h2>
+        <p class="quiz-card-subtitle">Você responderá a <strong class="gold-text">12 perguntas</strong> cuidadosamente elaboradas que avaliam diferentes aspectos da sua personalidade e comportamento com o dinheiro.</p>
+
+        <div class="quiz-method-grid">
+          <div class="quiz-method-item">
+            <div class="quiz-method-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22">
+                <circle cx="12" cy="12" r="10" /><path d="M12 8v4l3 3" />
+              </svg>
+            </div>
+            <div>
+              <h3>Big Five</h3>
+              <p>Avalia cinco dimensões fundamentais: Abertura, Conscienciosidade, Extroversão, Amabilidade e Estabilidade Emocional.</p>
+            </div>
+          </div>
+          <div class="quiz-method-item">
+            <div class="quiz-method-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+            </div>
+            <div>
+              <h3>Eneagrama</h3>
+              <p>Identifica seu eneatipo entre os 9 tipos de personalidade e como ele influencia sua relação com o dinheiro.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-intro-footer">
+          <p class="quiz-intro-time">⏱️ Tempo estimado: 3 a 5 minutos</p>
+          <button id="btn-start-test" class="btn-hero">
+            Iniciar Teste
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="margin-left:10px;">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================================================================
+       TELA 2: PERGUNTAS DO QUIZ
+       ================================================================ -->
+  <div class="quiz-screen" id="screen-quiz">
+    <div class="quiz-container quiz-container--narrow">
+
+      <!-- Progress -->
+      <div class="quiz-progress-wrapper">
+        <div class="quiz-progress-header">
+          <span id="quiz-progress-label" class="quiz-progress-label">Questão 1 de 12</span>
+          <span class="quiz-progress-pct" id="quiz-progress-pct">0%</span>
+        </div>
+        <div class="quiz-progress-track">
+          <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
+        </div>
+      </div>
+
+      <!-- Card da pergunta -->
+      <div class="quiz-card quiz-question-card">
+        <p class="quiz-question-hint">Responda de acordo com seu comportamento real, não como você gostaria de ser.</p>
+        <h2 class="quiz-question-text" id="question-text">Carregando pergunta…</h2>
+
+        <div class="likert-options" id="likert-options">
+          <!-- Renderizado via JS -->
+        </div>
+      </div>
+
+      <!-- Navegação -->
+      <div class="quiz-nav">
+        <button id="btn-prev" class="quiz-btn quiz-btn--outline" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          Anterior
+        </button>
+
+        <button id="btn-next" class="quiz-btn quiz-btn--gold" disabled>
+          Próxima
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <button id="btn-finish" class="quiz-btn quiz-btn--gold" style="display:none;" disabled>
+          Finalizar
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================================================================
+       TELA 3: RESULTADOS
+       ================================================================ -->
+  <div class="quiz-screen" id="screen-results">
+    <div class="quiz-container">
+
+      <!-- Cabeçalho dos resultados -->
+      <div class="quiz-hero-text">
+        <span class="eyebrow">Seu Diagnóstico</span>
+        <h1>Seus Resultados, <span class="gold-text" id="result-name">amigo(a)</span>!</h1>
+        <p class="hero-subtitle">Aqui está uma visão inicial do seu perfil de personalidade financeira baseado nas suas respostas.</p>
+      </div>
+
+      <!-- Card: Dimensões Big Five -->
+      <div class="quiz-card result-card">
+        <h2 class="quiz-card-title">Suas Dimensões de Personalidade</h2>
+        <p class="quiz-card-subtitle">Baseado no modelo Big Five, aqui estão seus principais traços:</p>
+
+        <div class="result-dimensions">
+
+          <div class="result-dimension">
+            <div class="result-dimension-header">
+              <span class="result-dimension-label">Abertura a Experiências</span>
+              <span class="result-dimension-pct gold-text" id="bar-openness-pct">—</span>
+            </div>
+            <div class="result-bar">
+              <div class="result-bar-fill" id="bar-openness-fill" data-width="0"></div>
+            </div>
+            <p class="result-dimension-desc" id="bar-openness-desc"></p>
+          </div>
+
+          <div class="result-dimension">
+            <div class="result-dimension-header">
+              <span class="result-dimension-label">Conscienciosidade</span>
+              <span class="result-dimension-pct gold-text" id="bar-conscientiousness-pct">—</span>
+            </div>
+            <div class="result-bar">
+              <div class="result-bar-fill" id="bar-conscientiousness-fill" data-width="0"></div>
+            </div>
+            <p class="result-dimension-desc" id="bar-conscientiousness-desc"></p>
+          </div>
+
+          <div class="result-dimension">
+            <div class="result-dimension-header">
+              <span class="result-dimension-label">Extroversão</span>
+              <span class="result-dimension-pct gold-text" id="bar-extraversion-pct">—</span>
+            </div>
+            <div class="result-bar">
+              <div class="result-bar-fill" id="bar-extraversion-fill" data-width="0"></div>
+            </div>
+            <p class="result-dimension-desc" id="bar-extraversion-desc"></p>
+          </div>
+
+          <div class="result-dimension">
+            <div class="result-dimension-header">
+              <span class="result-dimension-label">Amabilidade</span>
+              <span class="result-dimension-pct gold-text" id="bar-agreeableness-pct">—</span>
+            </div>
+            <div class="result-bar">
+              <div class="result-bar-fill" id="bar-agreeableness-fill" data-width="0"></div>
+            </div>
+            <p class="result-dimension-desc" id="bar-agreeableness-desc"></p>
+          </div>
+
+          <div class="result-dimension">
+            <div class="result-dimension-header">
+              <span class="result-dimension-label">Estabilidade Emocional</span>
+              <span class="result-dimension-pct gold-text" id="bar-stability-pct">—</span>
+            </div>
+            <div class="result-bar">
+              <div class="result-bar-fill" id="bar-stability-fill" data-width="0"></div>
+            </div>
+            <p class="result-dimension-desc" id="bar-stability-desc"></p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Card: Insights -->
+      <div class="quiz-card result-card">
+        <h2 class="quiz-card-title">Insights sobre Seu Comportamento</h2>
+
+        <div class="result-insights-grid">
+
+          <div class="result-insight">
+            <div class="result-insight-icon">💡</div>
+            <h3>Seu Estilo Financeiro</h3>
+            <p id="insight-style"></p>
+          </div>
+
+          <div class="result-insight">
+            <div class="result-insight-icon">🎯</div>
+            <h3>Tomada de Decisão</h3>
+            <p id="insight-decision"></p>
+          </div>
+
+          <div class="result-insight">
+            <div class="result-insight-icon">🌱</div>
+            <h3>Potencial de Crescimento</h3>
+            <p id="insight-growth"></p>
+          </div>
+
+          <div class="result-insight">
+            <div class="result-insight-icon">🤝</div>
+            <h3>Relacionamento com Outros</h3>
+            <p id="insight-relation"></p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Card: Próximos Passos (CTA) -->
+      <div class="quiz-card result-card result-cta-card">
+        <h2 class="quiz-card-title">Próximos Passos</h2>
+        <p class="quiz-card-subtitle">Esta é apenas uma visão inicial. Para uma análise completa e personalizada do seu perfil de personalidade financeira, agende uma sessão com a Dani Meger.</p>
+
+        <div class="result-cta-actions">
+          <a href="https://wa.me/5511941335119" target="_blank" rel="noopener noreferrer" class="btn-hero" id="result-whatsapp-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="margin-right:8px;flex-shrink:0;">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.557 4.122 1.532 5.857L.057 23.492a.5.5 0 0 0 .614.657l5.79-1.519A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.796 9.796 0 0 1-5.003-1.371l-.359-.214-3.717.976 1.001-3.617-.235-.373A9.781 9.781 0 0 1 2.182 12c0-5.418 4.4-9.818 9.818-9.818 5.419 0 9.818 4.4 9.818 9.818 0 5.419-4.399 9.818-9.818 9.818z"/>
+            </svg>
+            Falar com a Dani no WhatsApp
+          </a>
+          <a href="index.html" class="quiz-btn quiz-btn--outline" style="text-decoration:none;">
+            Voltar para o Início
+          </a>
+        </div>
+
+        <p class="result-email-note">Uma análise detalhada será enviada para <strong class="gold-text" id="result-email"></strong></p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Daniele Meger · Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="quiz.js"></script>
+
+</body>
+
+</html>
