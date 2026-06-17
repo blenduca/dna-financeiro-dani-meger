@@ -73,21 +73,122 @@ function showScreen(name) {
 }
 
 // ===== TELA: FORMULÁRIO =====
+
+function setFieldError(fieldId, message) {
+  const field = document.getElementById(fieldId);
+  if (!field) return;
+  field.classList.add("field-error");
+
+  // Remove mensagem de erro anterior, se houver
+  const existing = field.parentElement.querySelector(".error-message");
+  if (existing) existing.remove();
+
+  const err = document.createElement("span");
+  err.className = "error-message";
+  err.textContent = message;
+  field.parentElement.appendChild(err);
+}
+
+function clearFieldError(fieldId) {
+  const field = document.getElementById(fieldId);
+  if (!field) return;
+  field.classList.remove("field-error");
+  const existing = field.parentElement.querySelector(".error-message");
+  if (existing) existing.remove();
+}
+
+function validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 function initFormScreen() {
   const form = document.getElementById("quiz-form");
   if (!form) return;
 
+  // Limpa o erro ao usuário começar a digitar
+  ["qf-name", "qf-email", "qf-phone", "qf-profession", "qf-income", "qf-challenge"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener("input", () => clearFieldError(id));
+    }
+  });
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    userData.name             = document.getElementById("qf-name").value.trim();
-    userData.email            = document.getElementById("qf-email").value.trim();
-    userData.phone            = document.getElementById("qf-phone").value.trim();
-    userData.profession       = document.getElementById("qf-profession").value.trim();
-    userData.monthlyIncome    = document.getElementById("qf-income").value.trim();
-    userData.financialChallenge = document.getElementById("qf-challenge").value.trim();
+
+    const name             = document.getElementById("qf-name").value.trim();
+    const email            = document.getElementById("qf-email").value.trim();
+    const phone            = document.getElementById("qf-phone").value.trim();
+    const profession       = document.getElementById("qf-profession").value.trim();
+    const monthlyIncome    = document.getElementById("qf-income").value.trim();
+    const financialChallenge = document.getElementById("qf-challenge").value.trim();
+
+    // Limpa todos os erros anteriores
+    ["qf-name", "qf-email", "qf-phone", "qf-profession", "qf-income", "qf-challenge"].forEach(clearFieldError);
+
+    let firstErrorId = null;
+    let hasError = false;
+
+    if (!name) {
+      setFieldError("qf-name", "Por favor, informe seu nome completo.");
+      if (!firstErrorId) firstErrorId = "qf-name";
+      hasError = true;
+    }
+
+    if (!email) {
+      setFieldError("qf-email", "Por favor, informe seu e-mail.");
+      if (!firstErrorId) firstErrorId = "qf-email";
+      hasError = true;
+    } else if (!validateEmail(email)) {
+      setFieldError("qf-email", "Por favor, informe um e-mail válido.");
+      if (!firstErrorId) firstErrorId = "qf-email";
+      hasError = true;
+    }
+
+    if (!phone) {
+      setFieldError("qf-phone", "Por favor, informe seu WhatsApp.");
+      if (!firstErrorId) firstErrorId = "qf-phone";
+      hasError = true;
+    }
+
+    if (!profession) {
+      setFieldError("qf-profession", "Por favor, informe sua profissão.");
+      if (!firstErrorId) firstErrorId = "qf-profession";
+      hasError = true;
+    }
+
+    if (!monthlyIncome) {
+      setFieldError("qf-income", "Por favor, informe sua renda mensal.");
+      if (!firstErrorId) firstErrorId = "qf-income";
+      hasError = true;
+    }
+
+    if (!financialChallenge) {
+      setFieldError("qf-challenge", "Por favor, descreva seu maior desafio financeiro.");
+      if (!firstErrorId) firstErrorId = "qf-challenge";
+      hasError = true;
+    }
+
+    if (hasError) {
+      // Foca no primeiro campo com erro
+      const firstErrorEl = document.getElementById(firstErrorId);
+      if (firstErrorEl) {
+        firstErrorEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        firstErrorEl.focus();
+      }
+      return;
+    }
+
+    // Todos os campos válidos — salva e avança
+    userData.name               = name;
+    userData.email              = email;
+    userData.phone              = phone;
+    userData.profession         = profession;
+    userData.monthlyIncome      = monthlyIncome;
+    userData.financialChallenge = financialChallenge;
 
     // Popula saudação na tela de introdução
-    const firstName = userData.name.split(" ")[0];
+    const firstName = name.split(" ")[0];
     const introName = document.getElementById("intro-name");
     if (introName) introName.textContent = firstName;
 

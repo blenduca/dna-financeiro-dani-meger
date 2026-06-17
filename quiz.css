@@ -138,6 +138,28 @@
   line-height: 1.6;
 }
 
+/* ===== VALIDAÇÃO DE ERROS ===== */
+
+.form-input.field-error {
+  border-color: #e05555 !important;
+  background: rgba(224, 85, 85, 0.06);
+  box-shadow: 0 0 0 3px rgba(224, 85, 85, 0.18);
+}
+
+.form-input.field-error:focus {
+  border-color: #e05555 !important;
+  box-shadow: 0 0 0 3px rgba(224, 85, 85, 0.28);
+}
+
+.error-message {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #e05555;
+  line-height: 1.4;
+}
+
 /* ===== INTRODUÇÃO ===== */
 
 .quiz-intro-card .quiz-card-title {
